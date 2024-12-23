@@ -1,4 +1,4 @@
-package szorgalmi_felhasznalok_es_jogosultsagok;
+package szorgalmi_felhasznalok_es_jogosultsagok_SZOVEGES_JOGOSULTSAGOKKAL;
 
 /*
  * FONTOS SAJÁTSÁGOK, KÓDRÉSZEK:
@@ -10,6 +10,7 @@ package szorgalmi_felhasznalok_es_jogosultsagok;
  * -DialogResult enum, amiben 2 elemet tárolunk; alapból cancelre állitjuk a sajátablakban; a sajátablakban lesz gettere; a sajátablakban állitjuk ok-ra akkor, ha sikerült példányositani a felhasznalo-t a felvitel-ben; a főablak felvitel metódusában ellenőrzök rá, h ok-e, és akkor, ha ok, hozzáadom az  új elemet a List-hez és a modellhez is
  * - fel tudok vinni új adatot: ebben a kódban adatfelvitel() metódus + SAJATABLAK-ban mentes()!!
  * - tudok módositani kijelölt adatot: ebben a kódban modositas() metódus! (a sajatablak-tól csak annyit kap, h a mentés gombra kattintott és is ok-ra állt a DialogResult)
+ * - egy külön osztályban  létrehoztam egy enum-ot a jogosultságoknak: osztály neve: FelsorolasOsztaly_jogos 
 */
 //--------------------------------------
 
@@ -219,6 +220,7 @@ public class FoablakJogosultsagok {
 				if(sajatAblakObj.getDr() == DialogResult.OK) {
 					felhasznalok.set(lstFelhasznalok.getSelectedIndex(),  sajatAblakObj.getFelhasznalo()); //BE KELL FRISSITENI A FELHASZNALOK LISTÁT 
 					listmodel.set(lstFelhasznalok.getSelectedIndex(), sajatAblakObj.getFelhasznalo()); //A LISTMODEL-T ÚGY KELL MÓDOSITANI (SET SEG.VEL), H A JLIST INDEXÉT LEKÉREM, ÉS AZT AZ INDEXET MÓDOSITOM BE A SAJATABLAK GETFELHASZNALOJÁsVAL
+					// Frissítjük a felhasznalok listáját is
 				}
 				}
 				
@@ -232,7 +234,8 @@ public class FoablakJogosultsagok {
 
 
 	protected void adatfelvitel() {
-		// TODO Auto-generated method stub
+		//sajatAblak kódban: A felhasználó adatfelvitelekor létre kell hozni egy új Felhasznalo_jogos objektumot, amely tartalmazza az új felhasználó adatait. 
+		//Ebben a kódban: Ezt az objektumot hozzá kell adni a felhasznalok listához, majd frissíteni kell a JList-et is (listmodel-len keresztül), hogy az új felhasználó megjelenjen a felületen.
 		
 		// JDialog: modális és nem modális is lehet, most modálisként csinálom meg
 				

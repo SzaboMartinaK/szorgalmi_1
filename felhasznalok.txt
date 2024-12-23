@@ -9,13 +9,18 @@ F0008;3;Botlik Béla
 F0009;2;Teszt Elek
 0010;1;Nagy Erika
 F0011;3;Kis Áron
-F0012;2;Varga Katalin
 0013;1;Szabó Zoltán
 F0014;3;Tóth Ádám
 F0015;2;Kovács Péter
 0016;1;Nagy Anna
 F0017;3;Szép Virág
-F0018;2;Botlik Béla
+F0017;1;Botlik Béla
 0019;1;Teszt Elek
 F0020;3;Nagy Erika
 F2020;3;Savanyú Nándor
+198210;1;Apró Levente
+2222;1;próba
+212121;3;próba jános
+101111;1;jon Black
+23223;2;tóth károly
+1111;1;próba juli

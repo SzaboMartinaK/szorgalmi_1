@@ -1,4 +1,4 @@
-package szorgalmi_felhasznalok_es_jogosultsagok;
+package szorgalmi_felhasznalok_es_jogosultsagok_SZOVEGES_JOGOSULTSAGOKKAL;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -9,6 +9,7 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import szorgalmi_felhasznalok_es_jogosultsagok_SZOVEGES_JOGOSULTSAGOKKAL.FelsorolasOsztaly_jogos.Jogosultsag; //BEIMPORTÁLJUK AZT AZ OSZTÁLYT, AMIBEN AZ ENUM VAN, AMI A JOGOSULTSÁGOKAT TÁROLJA
 
 import javax.swing.JTextField;
 import javax.swing.JLabel;
@@ -105,30 +106,12 @@ public class sajatAblak_felhasznalok extends JDialog {
 			contentPanel.add(txtNev);
 		}
 		
-		cmbJogosultsag = new JComboBox<Integer>();
-		cmbJogosultsag.setModel(new DefaultComboBoxModel<>(new Integer[] {1, 2, 3})); //HOZZÁ KELL RENDELNI A COMBOBOX-HOZ A VÁLASZTÁSI LEHETŐSÉGEKET. vISZONT EZEKET INTEGER TIPUSKÉNT, MERT A COMBOBOX EZT TUDJA KEZELNI (int nem lehet)
+		cmbJogosultsag = new JComboBox<>();
+		cmbJogosultsag.setModel(new DefaultComboBoxModel(Jogosultsag.values())); //HOZZÁ KELL RENDELNI A COMBOBOX-HOZ A VÁLASZTÁSI LEHETŐSÉGEKET. vISZONT EZEKET JOGOSULTSAG TIPUSKÉNT KELL (ENUM), IGY FOGJA TUDNI ANNAK A VALUE-JÁT MUTATNI A FELHASZNÁLÓNAK
+		//A Jogosultsag.values() visszaad egy tömböt az összes Jogosultsag enum értékkel.
+		//cmbJogosultsag.setModel(...)	--> Ez beállítja az új modellt a JComboBox számára.
 		cmbJogosultsag.setBounds(183, 76, 86, 26);
 		contentPanel.add(cmbJogosultsag);
-		{
-			JLabel lblKod1 = new JLabel("Vendég=1");
-			lblKod1.setBounds(396, 61, 78, 26);
-			contentPanel.add(lblKod1);
-		}
-		{
-			JLabel lblJogosultsagMagyarazat = new JLabel("Jogosultság:");
-			lblJogosultsagMagyarazat.setBounds(308, 61, 78, 26);
-			contentPanel.add(lblJogosultsagMagyarazat);
-		}
-		{
-			JLabel lblKod2 = new JLabel("Felhasználó=2");
-			lblKod2.setBounds(396, 89, 88, 26);
-			contentPanel.add(lblKod2);
-		}
-		{
-			JLabel lblKod3 = new JLabel("Admin=3");
-			lblKod3.setBounds(396, 115, 78, 26);
-			contentPanel.add(lblKod3);
-		}
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -160,8 +143,10 @@ public class sajatAblak_felhasznalok extends JDialog {
 	protected void mentes() {
 		// TODO Auto-generated method stub
 		
+		//FONTOS: A JOGOSULTSAG-OT, AMIT A COMBOBOXBÓL KÉREK LE, Jogosultsag TIPUSBA KELL KÉNYSZERITENI
+		
 		if(!txtID.getText().isBlank() && !txtNev.getText().isBlank()) { //ellenőrzés, h jó adatot vitt-e fel
-			felhasznalo = new Felhasznalo_jogos(txtID.getText(), (Integer)cmbJogosultsag.getSelectedItem(), txtNev.getText()); //INTEGER TIPUSBA KELL KÉNYSZERITENI A KIOLVASÁSKOR
+			felhasznalo = new Felhasznalo_jogos(txtID.getText(), (Jogosultsag)cmbJogosultsag.getSelectedItem(), txtNev.getText()); //JOGOSULTSAG TIPUSBA KELL KÉNYSZERITENI 
 			dr = DialogResult.OK; //MENTES GOMBOT NYOMOTT. EZT AZ INFÓT TOVÁBBADOM A FŐABLAKNAK; ha sikerült példányositani a felhasznalo-t, minden adat megvan, akkor ok-ra állitom a dr-t
 			dispose(); //magát az ablakot tünteti el, de az objektum(JDialog) attól nem szűnik meg, továbbra is elérhető. Ezzel csak azt érjük el, h visszakerüljön a vezérlés a főablakba 
 
